@@ -45,7 +45,7 @@ api_key = os.environ['api_key']
 #     data = json.loads(response_spacex.text)
 #     image_urls = [link for link in data['links']['flickr']['original']]
 #     for image_number, image_url in enumerate(image_urls):
-#         image_name =         r'images/spacex_{n}.jpg'.format(n=image_number)
+#         image_name = r'images/spacex_{n}.jpg'.format(n=image_number)
 #         response_image = requests.get(image_url)
 #         response_image.raise_for_status()
 #         with open(image_name, 'wb') as file:
@@ -133,10 +133,6 @@ os.makedirs('images', mode=0o777, exist_ok=True)
 # print(urls_apod)
 urls_epic = earth_polychromatic_imaging_camera(api_key)
 print(urls_epic)
-
-
-print(os.environ['api_key'])
-
 
 
 # test_url = "https://example.com/txt/hello%20world.txt?v=9#python"
