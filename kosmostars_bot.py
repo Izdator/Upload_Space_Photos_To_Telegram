@@ -1,6 +1,14 @@
 import telegram
 
-bot = telegram.Bot(token='7030442780:AAGrNsidCIUmR6XDaGC0y1WSNEwKa4Vsdjw')
+
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+token = os.environ.get('token')
+
+bot = telegram.Bot(token)
 
 print(bot.get_me())
 
