@@ -23,5 +23,5 @@ if __name__ == "__main__":
     parser.add_argument('--launch_id', type=str, help='Launch ID of the SpaceX launch', default='latest')
     args = parser.parse_args()
 
-    user_url = f'https://api.spacexdata.com/v5/launches/{args.launch_id}'
-    fetch_spacex_last_launch(user_url)
+    spacex_launch_url = f'https://api.spacexdata.com/v5/launches/{args.launch_id}'
+    fetch_spacex_last_launch(spacex_launch_url)
