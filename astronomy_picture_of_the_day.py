@@ -31,8 +31,8 @@ def get_astronomy_picture_of_the_day(api_key, count=30):
             image_name = f'images/nasa_apod_{date_today.strftime("%Y%m%d")}{image_extension}'
             try:
                 download_pictures(apod_data['url'], image_name)
-            except Exception as e:
-                print(f"Error downloading image: {e}")
+            except (requests.exceptions.RequestException, IOError) as e:
+                print(f"Error downloading image from {apod_data['url']}: {e}")
 
         date_today = date_today - timedelta(days=1)
 

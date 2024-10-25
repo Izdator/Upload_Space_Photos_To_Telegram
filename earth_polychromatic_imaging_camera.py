@@ -39,8 +39,12 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
         image_name = f'images/nasa_epic_{image_number}.png'
         try:
             download_pictures(image_url, image_name)
+        except requests.exceptions.RequestException as req_err:
+            print(f"Request error while downloading image {image_number}: {req_err}")
+        except IOError as io_err:
+            print(f"I/O error while saving image {image_number}: {io_err}")
         except Exception as e:
-            print(f"Error downloading image {image_number}: {e}")
+            print(f"Unexpected error while downloading image {image_number}: {e}")
 
     return image_urls
 
