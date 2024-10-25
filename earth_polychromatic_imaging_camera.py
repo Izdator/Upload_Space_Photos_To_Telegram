@@ -20,9 +20,9 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
         }
         response = requests.get(base_url, params=params)
         response.raise_for_status()
-        data = response.json()
+        epic_data = response.json()
 
-        for item in data:
+        for item in epic_data:
             if 'image' in item:
                 image_url = (f"https://api.nasa.gov/EPIC/archive/natural/{item['date'][:10].replace('-', '/')}"
                              f"/png/{item['image']}.png?api_key={api_key}")

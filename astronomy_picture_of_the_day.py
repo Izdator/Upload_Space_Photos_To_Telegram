@@ -23,14 +23,14 @@ def get_astronomy_picture_of_the_day(api_key, count=30):
         }
         response = requests.get(base_url, params=params)
         response.raise_for_status()
-        data = response.json()
+        apod_data = response.json()
 
-        if 'url' in data:
-            image_urls.append(data['url'])
-            image_extension = detect_file_extension(data['url'])
+        if 'url' in apod_data:
+            image_urls.append(apod_data['url'])
+            image_extension = detect_file_extension(apod_data['url'])
             image_name = f'images/nasa_apod_{date_today.strftime("%Y%m%d")}{image_extension}'
             try:
-                download_pictures(data['url'], image_name)
+                download_pictures(apod_data['url'], image_name)
             except Exception as e:
                 print(f"Error downloading image: {e}")
 
