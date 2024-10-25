@@ -2,18 +2,17 @@ import argparse
 import os
 import random
 import telegram
-
 from dotenv import load_dotenv
 from time import sleep
-
 
 token = os.environ.get('TELEGRAM_TOKEN')
 bot = telegram.Bot(token)
 chat_id = '-1002280010724'
 
+
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--publication_frequency', type=int, help='publication frequency in hours', default=4)
+    parser = argparse.ArgumentParser(description="A script to automatically send documents from a specified directory to a Telegram chat at a given frequency.")
+    parser.add_argument('--publication_frequency', type=int, help='Publication frequency in hours (default: 4)', default=4)
     args = parser.parse_args()
     time_publication = args.publication_frequency * 3600
 
@@ -25,6 +24,7 @@ def main():
         with open(file_path, 'rb') as file:
             bot.send_document(chat_id=chat_id, document=file)
         sleep(time_publication)
+
 
 if __name__ == "__main__":
     main()
