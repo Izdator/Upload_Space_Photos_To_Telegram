@@ -19,12 +19,6 @@ from urllib.parse import urlparse, unquote
 from general_functions.py import downloading_pictures, file_extension_detection
 
 
-load_dotenv()
-
-
-api_key = os.environ['api_key']
-
-
 def astronomy_picture_of_the_day(api_key, count=30):
     base_url = "https://api.nasa.gov/planetary/apod"
     image_urls = []
@@ -56,4 +50,6 @@ def astronomy_picture_of_the_day(api_key, count=30):
 
 
 if __name__ == "__main__":
+    load_dotenv()
+    api_key = os.environ['api_key']
     urls_apod = astronomy_picture_of_the_day(api_key)

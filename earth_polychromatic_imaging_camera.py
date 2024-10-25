@@ -19,13 +19,6 @@ from urllib.parse import urlparse, unquote
 from general_functions.py import downloading_pictures, file_extension_detection
 
 
-load_dotenv()
-
-api_key = os.environ.get('api_key')
-if api_key is None:
-    raise ValueError("API key is not set in the environment variables.")
-
-
 def earth_polychromatic_imaging_camera(api_key, desired_count=10):
     base_url = "https://api.nasa.gov/EPIC/api/natural/images"
     image_urls = []
@@ -63,4 +56,5 @@ def earth_polychromatic_imaging_camera(api_key, desired_count=10):
 
 
 if __name__ == "__main__":
+    api_key = os.environ.get('api_key')
     urls_epic = earth_polychromatic_imaging_camera(api_key)
