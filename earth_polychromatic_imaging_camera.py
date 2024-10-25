@@ -1,12 +1,11 @@
 from datetime import datetime, timedelta
-import json
 import os
 from urllib.parse import urlparse, unquote
 
 from dotenv import load_dotenv
 import requests
 
-from general_functions import download_pictures, detect_file_extension
+from general_functions import download_pictures
 
 
 def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
@@ -22,10 +21,10 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
         response.raise_for_status()
         epic_data = response.json()
 
-        for item in epic_data:
-            if 'image' in item:
-                image_url = (f"https://api.nasa.gov/EPIC/archive/natural/{item['date'][:10].replace('-', '/')}"
-                             f"/png/{item['image']}.png?api_key={api_key}")
+        for image_data in epic_data:
+            if 'image' in image_data:
+                image_url = (f"https://api.nasa.gov/EPIC/archive/natural/{image_data['date'][:10].replace('-', '/')}"
+                             f"/png/{image_data['image']}.png?api_key={api_key}")
                 image_urls.append(image_url)
 
                 if len(image_urls) >= desired_count:
