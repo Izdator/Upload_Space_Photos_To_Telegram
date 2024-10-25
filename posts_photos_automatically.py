@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from time import sleep
 
 
-token = os.environ.get('token')
+token = os.environ.get('TELEGRAM_TOKEN')
 bot = telegram.Bot(token)
 chat_id = '-1002280010724'
 

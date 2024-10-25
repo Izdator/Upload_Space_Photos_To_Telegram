@@ -46,5 +46,5 @@ def earth_polychromatic_imaging_camera(api_key, desired_count=10):
 
 
 if __name__ == "__main__":
-    api_key = os.environ.get('api_key')
+    api_key = os.environ.get('NASA_TOKEN')
     urls_epic = earth_polychromatic_imaging_camera(api_key)

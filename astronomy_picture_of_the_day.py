@@ -41,5 +41,5 @@ def astronomy_picture_of_the_day(api_key, count=30):
 
 if __name__ == "__main__":
     load_dotenv()
-    api_key = os.environ['api_key']
+    api_key = os.environ['NASA_TOKEN']
     urls_apod = astronomy_picture_of_the_day(api_key)

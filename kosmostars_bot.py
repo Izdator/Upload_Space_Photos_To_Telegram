@@ -1,10 +1,10 @@
 import telegram
-
+import os
 
 from dotenv import load_dotenv
 
 
-token = os.environ.get('token')
+token = os.environ.get('TELEGRAM_TOKEN')
 
 bot = telegram.Bot(token)
 
