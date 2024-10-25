@@ -6,10 +6,10 @@ from urllib.parse import urlparse, unquote
 from dotenv import load_dotenv
 import requests
 
-from general_functions import downloading_pictures, file_extension_detection
+from general_functions import download_pictures, detect_file_extension
 
 
-def earth_polychromatic_imaging_camera(api_key, desired_count=10):
+def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
     base_url = "https://api.nasa.gov/EPIC/api/natural/images"
     image_urls = []
     date_today = datetime.now()
@@ -38,7 +38,7 @@ def earth_polychromatic_imaging_camera(api_key, desired_count=10):
     for image_number, image_url in enumerate(image_urls):
         image_name = f'images/nasa_epic_{image_number}.png'
         try:
-            downloading_pictures(image_url, image_name)
+            download_pictures(image_url, image_name)
         except Exception as e:
             print(f"Error downloading image {image_number}: {e}")
 
@@ -47,4 +47,4 @@ def earth_polychromatic_imaging_camera(api_key, desired_count=10):
 
 if __name__ == "__main__":
     api_key = os.environ.get('NASA_TOKEN')
-    urls_epic = earth_polychromatic_imaging_camera(api_key)
+    urls_epic = capture_earth_polychromatic_imaging_camera(api_key)
