@@ -13,7 +13,6 @@ bot = telegram.Bot(token)
 
 
 def main():
-    print(bot.get_me())
 
     chat_id = '-1002280010724'
 
