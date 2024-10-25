@@ -1,22 +1,12 @@
-import os
-
-
-import requests
-
-
 from datetime import datetime, timedelta
-
-
-from dotenv import load_dotenv
-
-
 import json
-
-
+import os
 from urllib.parse import urlparse, unquote
 
+from dotenv import load_dotenv
+import requests
 
-from general_functions.py import downloading_pictures, file_extension_detection
+from general_functions import downloading_pictures, file_extension_detection
 
 
 def earth_polychromatic_imaging_camera(api_key, desired_count=10):

@@ -1,22 +1,12 @@
-import os
-
-
-import requests
-
-
 from datetime import datetime, timedelta
-
-
-from dotenv import load_dotenv
-
-
 import json
-
-
+import os
 from urllib.parse import urlparse, unquote
 
+from dotenv import load_dotenv
+import requests
 
-from general_functions.py import downloading_pictures, file_extension_detection
+from general_functions import downloading_pictures, file_extension_detection
 
 
 def astronomy_picture_of_the_day(api_key, count=30):

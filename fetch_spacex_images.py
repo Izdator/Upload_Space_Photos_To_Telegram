@@ -1,16 +1,9 @@
+import argparse
+import json
 import os
-
-
 import requests
 
-
-import json
-
-
-import argparse
-
-
-from general_functions.py import downloading_pictures
+from general_functions import downloading_pictures
 
 
 def fetch_spacex_last_launch(launch_url):

@@ -1,22 +1,11 @@
+import argparse
 import os
-
-
 import random
-
-
 import telegram
 
-
-import argparse
-
-
 from dotenv import load_dotenv
-
-
 from time import sleep
 
-
-load_dotenv()
 
 token = os.environ.get('token')
 bot = telegram.Bot(token)
