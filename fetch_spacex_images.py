@@ -9,8 +9,8 @@ from general_functions import download_pictures
 def fetch_spacex_last_launch(launch_url):
     response_spacex = requests.get(launch_url)
     response_spacex.raise_for_status()
-    launch_data = json.loads(response_spacex.text)
-    image_urls = launch_data['links']['flickr']['original']
+    launch_content = json.loads(response_spacex.text)
+    image_urls = launch_content['links']['flickr']['original']
     for image_number, image_url in enumerate(image_urls):
         image_name = r'images/spacex_{n}.jpg'.format(n=image_number)
         download_pictures(image_url, image_name)

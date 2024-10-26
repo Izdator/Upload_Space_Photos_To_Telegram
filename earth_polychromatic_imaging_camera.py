@@ -22,7 +22,7 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
         try:
             response = requests.get(base_url, params=params)
             response.raise_for_status()
-            epic_data = response.json()
+            epic_content = response.json()
         except requests.exceptions.RequestException as e:
             print(f"Error during API request: {e}")
             break
@@ -30,10 +30,10 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
             print("Error decoding the JSON response.")
             break
 
-        for image_data in epic_data:
-            if 'image' in image_data:
+        for image_content in epic_content:
+            if 'image' in image_content:
                 # Формируем базовый URL для изображения
-                image_base_url = f"https://api.nasa.gov/EPIC/archive/natural/{image_data['date'][:10].replace('-', '/')}/png/{image_data['image']}.png"
+                image_base_url = f"https://api.nasa.gov/EPIC/archive/natural/{image_content['date'][:10].replace('-', '/')}/png/{image_content['image']}.png"
 
                 # Кодируем параметры GET
                 image_url = f"{image_base_url}?{urllib.parse.urlencode(params)}"
