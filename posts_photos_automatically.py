@@ -11,9 +11,10 @@ def main():
     parser.add_argument('--publication_frequency', type=int, help='Publication frequency in hours (default: 4)', default=4)
     args = parser.parse_args()
     time_publication = args.publication_frequency * 3600
+    load_dotenv()
     token = os.environ.get('TELEGRAM_TOKEN')
+    chat_id = os.environ.get('TELEGRAM_CHAT_ID')
     bot = telegram.Bot(token)
-    chat_id = '-1002280010724'
     file_names = [f for f in os.listdir('images/') if os.path.isfile(os.path.join('images/', f))]
     random.shuffle(file_names)
 
