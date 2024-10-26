@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 import os
-import urllib.parse
+import json
 from dotenv import load_dotenv
 import requests
 
@@ -16,6 +16,7 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
         params = {
             'api_key': api_key,
         }
+
         try:
             response = requests.get(base_url, params=params)
             response.raise_for_status()
@@ -29,11 +30,9 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
 
         for image_content in epic_content:
             if 'image' in image_content:
-                # Формируем базовый URL для изображения
                 image_base_url = f"https://api.nasa.gov/EPIC/archive/natural/{image_content['date'][:10].replace('-', '/')}/png/{image_content['image']}.png"
 
-                # Кодируем параметры GET
-                image_url = f"{image_base_url}?{urllib.parse.urlencode(params)}"
+                image_url = f"{image_base_url}/api_key={params['api_key']}"
                 image_urls.append(image_url)
 
                 if len(image_urls) >= desired_count:
