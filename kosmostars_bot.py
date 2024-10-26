@@ -2,15 +2,14 @@ import telegram
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
-
-token = os.environ.get('TELEGRAM_TOKEN')
-chat_id = os.environ.get('CHAT_ID')
-
-bot = telegram.Bot(token)
-
 
 def main():
+    load_dotenv()
+
+    token = os.environ.get('TELEGRAM_TOKEN')
+    chat_id = os.environ.get('CHAT_ID')
+
+    bot = telegram.Bot(token)
     bot.send_message(chat_id=chat_id, text="I'm sorry Dave I'm afraid I can't do that.")
 
     relative_path = 'images/nasa_apod_20240922.jpg'
