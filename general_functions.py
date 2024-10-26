@@ -7,7 +7,7 @@ import requests
 from urllib.parse import urlparse, unquote
 
 
-def download_pictures(url, path):
+def download_picture(url, path):
     response = requests.get(url)
     response.raise_for_status()
     with open(path, 'wb') as file:

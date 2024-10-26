@@ -3,7 +3,7 @@ import json
 import os
 import requests
 
-from general_functions import download_pictures
+from general_functions import download_picture
 
 
 def fetch_spacex_last_launch(launch_url):
@@ -13,7 +13,7 @@ def fetch_spacex_last_launch(launch_url):
     image_urls = launch_content['links']['flickr']['original']
     for image_number, image_url in enumerate(image_urls):
         image_name = r'images/spacex_{n}.jpg'.format(n=image_number)
-        download_pictures(image_url, image_name)
+        download_picture(image_url, image_name)
 
 
 if __name__ == "__main__":

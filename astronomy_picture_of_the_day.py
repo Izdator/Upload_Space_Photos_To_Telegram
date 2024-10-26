@@ -6,7 +6,7 @@ from urllib.parse import urlparse, unquote
 from dotenv import load_dotenv
 import requests
 
-from general_functions import download_pictures, detect_file_extension
+from general_functions import download_picture, detect_file_extension
 
 
 def get_astronomy_picture_of_the_day(api_key, count=30):
@@ -30,7 +30,7 @@ def get_astronomy_picture_of_the_day(api_key, count=30):
             image_extension = detect_file_extension(apod_content['url'])
             image_name = f'images/nasa_apod_{date_today.strftime("%Y%m%d")}{image_extension}'
             try:
-                download_pictures(apod_content['url'], image_name)
+                download_picture(apod_content['url'], image_name)
             except (requests.exceptions.RequestException, IOError) as e:
                 print(f"Error downloading image from {apod_content['url']}: {e}")
 

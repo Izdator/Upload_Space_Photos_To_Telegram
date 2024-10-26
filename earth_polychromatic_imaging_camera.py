@@ -4,7 +4,7 @@ import urllib.parse
 from dotenv import load_dotenv
 import requests
 
-from general_functions import download_pictures
+from general_functions import download_picture
 
 
 def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
@@ -49,7 +49,7 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
     for image_number, image_url in enumerate(image_urls):
         image_name = f'images/nasa_epic_{image_number}.png'
         try:
-            download_pictures(image_url, image_name)
+            download_picture(image_url, image_name)
         except requests.exceptions.RequestException as req_err:
             print(f"Request error while downloading image {image_number}: {req_err}")
         except IOError as io_err:
