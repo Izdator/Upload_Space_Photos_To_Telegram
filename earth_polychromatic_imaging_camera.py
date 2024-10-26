@@ -12,9 +12,6 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
     image_urls = []
     date_today = datetime.now()
 
-    if not api_key:
-        raise ValueError("API key is missing or invalid.")
-
     while len(image_urls) < desired_count:
         params = {
             'api_key': api_key,
@@ -63,4 +60,6 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
 if __name__ == "__main__":
     load_dotenv()
     api_key = os.environ.get('NASA_TOKEN')
+    if not api_key:
+        raise ValueError("API key is missing or invalid.")
     urls_epic = capture_earth_polychromatic_imaging_camera(api_key)
