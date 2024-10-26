@@ -50,8 +50,6 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
             print(f"Request error while downloading image {image_number}: {req_err}")
         except IOError as io_err:
             print(f"I/O error while saving image {image_number}: {io_err}")
-        except Exception as e:
-            print(f"Unexpected error while downloading image {image_number}: {e}")
 
     return image_urls
 
