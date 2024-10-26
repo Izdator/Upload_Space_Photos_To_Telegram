@@ -7,7 +7,7 @@ def main():
     load_dotenv()
 
     token = os.environ.get('TELEGRAM_TOKEN')
-    chat_id = os.environ.get('CHAT_ID')
+    chat_id = os.environ.get('TELEGRAM_CHAT_ID')
 
     bot = telegram.Bot(token)
     bot.send_message(chat_id=chat_id, text="I'm sorry Dave I'm afraid I can't do that.")
