@@ -7,12 +7,16 @@ import requests
 from general_functions import download_picture
 
 
-def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
+def capture_earth_polychromatic_imaging_camera(api_key, start_date, desired_count=10):
     base_url = "https://api.nasa.gov/EPIC/api/natural/images"
     image_urls = []
-    date_today = datetime.now()
 
-    while len(image_urls) < desired_count:
+    date_today = datetime.strptime(start_date, '%Y-%m-%d')
+    dates = [(date_today - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(desired_count)]
+
+    os.makedirs('images', exist_ok=True)
+
+    for date in dates:
         params = {
             'api_key': api_key,
         }
@@ -32,15 +36,14 @@ def capture_earth_polychromatic_imaging_camera(api_key, desired_count=10):
             if 'image' in image_content:
                 image_base_url = f"https://api.nasa.gov/EPIC/archive/natural/{image_content['date'][:10].replace('-', '/')}/png/{image_content['image']}.png"
 
-                image_url = f"{image_base_url}/api_key={params['api_key']}"
+                image_url = f"{image_base_url}?api_key={params['api_key']}"
                 image_urls.append(image_url)
 
                 if len(image_urls) >= desired_count:
                     break
 
-        date_today = date_today - timedelta(days=1)
-
-    os.makedirs('images', exist_ok=True)
+        if len(image_urls) >= desired_count:
+            break
 
     for image_number, image_url in enumerate(image_urls):
         image_name = f'images/nasa_epic_{image_number}.png'
@@ -59,4 +62,6 @@ if __name__ == "__main__":
     api_key = os.environ.get('NASA_TOKEN')
     if not api_key:
         raise ValueError("API key is missing or invalid.")
-    urls_epic = capture_earth_polychromatic_imaging_camera(api_key)
+
+    start_date = '2023-09-22'
+    urls_epic = capture_earth_polychromatic_imaging_camera(api_key, start_date)

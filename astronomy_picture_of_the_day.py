@@ -16,10 +16,12 @@ def get_astronomy_picture_of_the_day(api_key, count=30):
 
     os.makedirs('images', exist_ok=True)
 
-    for _ in range(count):
+    dates = [(date_today - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(count)]
+
+    for date in dates:
         params = {
             'api_key': api_key,
-            'date': date_today.strftime('%Y-%m-%d'),
+            'date': date,
         }
         response = requests.get(base_url, params=params)
         response.raise_for_status()
@@ -28,13 +30,12 @@ def get_astronomy_picture_of_the_day(api_key, count=30):
         if 'url' in apod_content:
             image_urls.append(apod_content['url'])
             image_extension = detect_file_extension(apod_content['url'])
-            image_name = f'images/nasa_apod_{date_today.strftime("%Y%m%d")}{image_extension}'
+            image_name = f'images/nasa_apod_{date.replace("-", "")}{image_extension}'
+
             try:
                 download_picture(apod_content['url'], image_name)
             except (requests.exceptions.RequestException, IOError) as e:
                 print(f"Error downloading image from {apod_content['url']}: {e}")
-
-        date_today = date_today - timedelta(days=1)
 
     return image_urls
 
